@@ -1,15 +1,21 @@
 <template>
   <div>
+    <HomeOrder/>
+    <HomeAccount/>
     <HomeFooter/>
   </div>
 </template>
 
 <script>
+import HomeOrder from './home-order'
+import HomeAccount from './home-account'
 import HomeFooter from './home-footer'
 
 export default {
   name: 'Home',
   components: {
+    HomeOrder,
+    HomeAccount,
     HomeFooter
   },
   data () {

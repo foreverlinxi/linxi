@@ -22,7 +22,8 @@ export default {
    margin: 0;
    border: 0;
 }
-#app {
+body {
   background-color: #f4f4f4;
+  height: 100%;
 }
 </style>

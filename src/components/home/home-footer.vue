@@ -19,10 +19,10 @@
 
 <script>
 export default {
-  name: 'Home',
+  name: 'HomeFooter',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      //
     }
   }
 }
@@ -35,6 +35,7 @@ export default {
   position: fixed;
   width: 100%;
   bottom: 0;
+  border-top: 1px solid #dcdcdc;
   background-color: #fff;
 }
 .item-list {
@@ -44,6 +45,7 @@ export default {
   flex: 1;
   text-align: center;
   font-size: 11px;
+  margin-top: 5px;
 }
 .item>img{
   height: 18px;
