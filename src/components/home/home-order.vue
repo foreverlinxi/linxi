@@ -1,43 +1,20 @@
 <template>
   <div class="home-order">
-    <div class="home-order-content">
-      <!-- 上面一行 -->
-      <div class="up-row">
-        <div class="item wash-car">
-          <img src="./../../assets/images/home/wash-car.png"/>
-          <div>回家洗车</div>
+    <div class="left"></div>
+    <div class="content">
+      <div class="order-num"><span>订单号：2218040439091749490</span></div>
+      <div class="order-content">
+        <div class="progress">
+          <span>下单成功</span>
+          <img src="./../../assets/images/home/progress.png"/>
+          <span>待付款</span>
         </div>
-        <div class="middle"></div>
-        <div class="item beautify">
-          <img src="./../../assets/images/home/beautify.png"/>
-          <div>回家美容</div>
-        </div>
-      </div>
-      <!-- 中间10px留白 -->
-      <div style="height: 10px;width: 100%;"></div>
-      <!-- 下面一行 -->
-      <div class="down-row">
-        <div class="item insurance">
-          <img src="./../../assets/images/home/insurance.png"/>
-          <div>车辆保险</div>
-        </div>
-        <div class="middle"></div>
-        <div class="item traffic-inquiry">
-          <img src="./../../assets/images/home/traffic-inquiry.png"/>
-          <div>违章查询</div>
-        </div>
+        <div class="title">回家精洗</div>
+        <div class="location">停车位置：A区2单元负一楼停车场H67车位</div>
+        <div class="button"><span>立即支付</span></div>
       </div>
     </div>
-    <!-- <div class="up-row">
-      <div clsss="item-list">
-        <div class="left"></div>
-        <div class="wash-car"></div>
-        <div class="middle"></div>
-        <div class="beautify"></div>
-        <div class="right"></div>
-      </div>
-    </div>
-    <div class="dow-row"></div> -->
+    <div class="right"></div>
   </div>
 </template>
 
@@ -55,55 +32,79 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .home-order {
+  margin-top: 10px;
+  margin-bottom: 10px;
   width: 100%;
-  height: 210px;
+  height: 160px;
   display: flex;
-  background: #fff;
-  font-size: 14px;
-  color: #fff;
-  letter-spacing: 2px;
+  color: #8d8d8d;
 }
 .home-order-content {
-  margin: 10px 10px;
-  width: 100%;
-  height: 190px;
-}
-.up-row {
-  width: 100%;
-  height: 90px;
   display: flex;
 }
-.down-row {
-  width: 100%;
-  height: 90px;
-  display: flex;
-}
-.item-list {
-  width: 100%;
-}
-.left, .middle, .right{
-  width: 10px;
-}
-.item {
+.content {
+  background: #fff;
   flex: 1;
-  text-align: center;
+  height: 160px;
+  font-size: 11px;
   border-radius: 5px;
 }
-.wash-car {
-  background: #ed6575;
+.left, .right{
+  width: 10px;
 }
-.beautify {
+.order-num {
+  height: 30px;
+  width: 100%;
+  background: #5dc3f4;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  font-size: 13px;
+  color: #fff;
+  /* vertical-align: top; */
+}
+.order-num>span {
+  display: inline-block;
+  margin-left: 15px;
+  margin-top: 5px;
+}
+.order-content {
+  height: 130px;
+  width: 100%;
+}
+.progress {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 10px;
+  color: #000000;
+}
+.progress>img {
+  height: 10px;
+  width: 92px;
+  margin-left: 7px;
+  margin-right: 7px;
+}
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #58c3f2;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.location {
+  text-align: center;
+}
+.button {
+  font-size: 11px;
+  height: 22px;
+  width: 105px;
   background: #58c3f2;
+  text-align: center;
+  margin: 8px auto;
+  border-radius: 22px;
 }
-.insurance {
-  background: #28dfcc;
-}
-.traffic-inquiry {
-  background: #e8bd42;
-}
-img {
-  width: 43px;
-  height: 43px;
-  margin-top: 15px;
+.button>span {
+  color: #fff;
+  vertical-align: middle;
 }
 </style>
