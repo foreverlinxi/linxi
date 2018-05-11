@@ -3,7 +3,7 @@
     <HomeBanner/>
     <HomeOrder/>
     <HomeService/>
-    <HomeAccount/>
+    <HomeAccount style="margin-bottom: 55px;"/>
     <HomeFooter/>
   </div>
 </template>
@@ -26,7 +26,7 @@ export default {
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      //
     }
   }
 }

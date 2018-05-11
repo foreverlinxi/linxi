@@ -30,7 +30,7 @@
               <div>精洗</div>
             </div>
             <div class="more">
-              <div style="height: 24px;"><img class="more" src="./../../assets/images/home/more.png"/></div>
+              <div class="num"><img class="more" src="./../../assets/images/home/more.png"/></div>
               <div>更多</div>
             </div>
           </div>
@@ -70,6 +70,7 @@ export default {
   font-size: 11px;
   border:1px solid #fff;
   border-radius: 5px;
+  box-shadow: 0px 5px 10px #e6e6e6;
 }
 .recharge, .combo {
   flex: 1;
@@ -121,5 +122,6 @@ export default {
 .more {
   width: 12px;
   height: 3px;
+  padding-bottom: 4px;
 }
 </style>

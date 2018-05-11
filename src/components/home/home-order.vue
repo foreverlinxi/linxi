@@ -48,6 +48,7 @@ export default {
   height: 160px;
   font-size: 11px;
   border-radius: 5px;
+  box-shadow: 0px 5px 10px #e6e6e6;
 }
 .left, .right{
   width: 10px;
@@ -65,7 +66,7 @@ export default {
 .order-num>span {
   display: inline-block;
   margin-left: 15px;
-  margin-top: 5px;
+  line-height: 30px;
 }
 .order-content {
   height: 130px;
@@ -104,7 +105,8 @@ export default {
   border-radius: 22px;
 }
 .button>span {
+  height: 22px;
   color: #fff;
-  vertical-align: middle;
+  line-height: 22px;
 }
 </style>
