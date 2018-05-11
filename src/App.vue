@@ -1,12 +1,18 @@
 <template>
   <div id="app">
+    <http/>
     <router-view/>
   </div>
 </template>
 
 <script>
+import http from './components/ui/http'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    http
+  }
 }
 </script>
 

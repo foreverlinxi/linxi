@@ -28,6 +28,21 @@ export default {
     return {
       //
     }
+  },
+  created () {
+    this.queryHomeData()
+  },
+  methods: {
+    queryHomeData () {
+      this.$store.commit('setHomeParams', {
+        paramsKey: 'homeDataParams',
+        payApplyNo: '1111111'
+      })
+      this.$store.dispatch('queryHomeData')
+        .then((data) => {
+          console.log(data)
+        })
+    }
   }
 }
 </script>
