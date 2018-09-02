@@ -1,14 +1,14 @@
 <template>
-  <div class="home-order">
-    <div class="home-order-content">
+  <div class="home-service">
+    <div class="home-service-content">
       <!-- 上面一行 -->
       <div class="up-row">
-        <div class="item wash-car">
+        <div class="item wash-car" @click="goService">
           <img src="./../../assets/images/home/wash-car.png"/>
           <div>回家洗车</div>
         </div>
         <div class="middle"></div>
-        <div class="item beautify">
+        <div class="item beautify" @click="goBeautify">
           <img src="./../../assets/images/home/beautify.png"/>
           <div>回家美容</div>
         </div>
@@ -32,11 +32,59 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'HomeService',
   data () {
     return {
       //
+    }
+  },
+  computed: {
+    ...mapGetters({
+      getHomeData: 'getHomeData'
+    }),
+    // 是否有小区地址返回
+    hasShopName () {
+      return this.getHomeData.orgName && this.getHomeData.orgId
+    }
+  },
+  methods: {
+    // 服务列表页
+    goBeautify () {
+      if (this.goSelectLocation()) return
+      this.$router.push({
+        name: 'ServiceList',
+        query: {
+          type: '2' // 1洗车，2美容
+        }
+      })
+    },
+    // 回家洗车
+    goService () {
+      if (this.goSelectLocation()) return
+      this.$router.push({
+        name: 'ServiceList',
+        query: {
+          type: '1' // 1洗车，2美容
+        }
+      })
+    },
+    // 去选择地址页面
+    goSelectLocation () {
+      if (!this.hasShopName) {
+        this.$dialog.show({
+          message: '请先选择您的服务地址',
+          confirmCallback: () => {
+            this.$router.push({
+              name: 'Location'
+            })
+          }
+        })
+        return true
+      }
+      return false
     }
   }
 }
@@ -44,7 +92,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.home-order {
+.home-service {
   width: 100%;
   height: 210px;
   display: flex;
@@ -52,8 +100,10 @@ export default {
   font-size: 14px;
   color: #fff;
   letter-spacing: 2px;
+  /* border-top: 1px solid #f4f4f4; */
+  margin-top: 10px;
 }
-.home-order-content {
+.home-service-content {
   margin: 10px 10px;
   width: 100%;
   height: 190px;

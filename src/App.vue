@@ -1,12 +1,16 @@
 <template>
   <div id="app">
     <http/>
-    <router-view/>
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive" />
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive" />
   </div>
 </template>
 
 <script>
-import http from './components/ui/http'
+// loading组件，配合http请求使用
+import http from './components/ui/loading/http'
 
 export default {
   name: 'App',
@@ -17,10 +21,19 @@ export default {
 </script>
 
 <style>
+/* @font-face {
+  font-family: Helvetica;
+  src: url("../static/fonts/helveticaneueltpro.ttf");
+}
+@font-face {
+  font-family: PingFangSC-Regular;
+  src: url("../static/fonts/PingFangSC-Regular.ttf");
+} */
 *{
    vertical-align: baseline;
    font-weight: inherit;
-   font-family: inherit;
+   /* font-family: Helvetica, PingFangSC-Regular; */
+   font-family: '微软雅黑';
    font-style: inherit;
    font-size: 100%;
    outline: 0;

@@ -1,8 +1,9 @@
-import { HOME_DATA } from './url'
+import { HOME_DATA, OBTAINOPENID } from './url'
+import Lockr from 'lockr'
 
 const state = {
   homeData: {},
-  homeDataParams: {}
+  openId: {}
 }
 
 const getters = {
@@ -16,12 +17,27 @@ const actions = {
       params: state.homeDataParams,
       mutations: 'setHomeData'
     })
+  },
+  getOpenId: ({ state, dispatch }) => {
+    return dispatch('httpRequest', {
+      url: OBTAINOPENID,
+      params: state.openIdParams,
+      mutations: 'setOpenId'
+    })
   }
 }
 
 const mutations = {
   setHomeData: (state, data) => {
     state.homeData = data
+  },
+  setOpenId: (state, data) => {
+    state.openId = data
+    Lockr.set('openid', data.openid)
+  },
+  // 更新cityName,cityId,orgName,orgId
+  setUpdateLocation: (state, data) => {
+    Object.assign(state.homeData, data)
   },
   setHomeParams: (state, data) => {
     const key = data.paramsKey

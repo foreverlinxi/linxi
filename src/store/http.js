@@ -1,12 +1,11 @@
 import Axios from 'axios'
 import Qs from 'qs'
 import { BASE_URL, REQUEST_METHOD } from './url'
+import Lockr from 'lockr'
 
 const state = {
   isLoading: false,
-  response: {},
-  commonParams: {
-  }
+  response: {}
 }
 
 const getters = {
@@ -15,9 +14,14 @@ const getters = {
 }
 
 const actions = {
-  httpRequest: ({ state, commit }, { url, params, mutations }) => {
+  httpRequest: ({ state, commit, rootState }, { url, params, mutations }) => {
     return new Promise((resolve, reject) => {
-      Object.assign(params, state.commonParams)
+      // userId和token作为公共入参，从主页接口获取
+      Object.assign(params, {
+        userId: rootState.home.homeData.userId || '915',
+        token: Lockr.get('token') || '1Bgj7hmkLzu1a7olvOgKlZVKwC8kaNvzxdQZhsPBMs464FCsoAh68AGJwZgKzZH3'
+      })
+      console.log(params)
       commit('isLoading', true)
       Axios({
         url,
@@ -32,6 +36,7 @@ const actions = {
         .then(({data}) => {
           commit('isLoading', false)
           commit('setResponse', data)
+          console.log(data.flag)
           if (data.flag === '1') {
             commit(mutations, data.data)
             resolve(data.data)
@@ -40,7 +45,7 @@ const actions = {
         .catch(() => {
           commit('isLoading', false)
           commit('setResponse', {
-            flay: '2',
+            flag: '2',
             msg: '网络异常，请稍后再试！'
           })
         })

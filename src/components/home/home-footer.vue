@@ -1,17 +1,20 @@
 <template>
   <div class="home-footer">
     <div class="item-list">
-      <div class="item">
-        <img src="./../../assets/images/home/home-logo.png"/>
-        <div>首页</div>
+      <div class="item" @click="jumpPage('home')">
+        <img src="./../../assets/images/home/home-selected.png" v-if="fromPage === 'home'"/>
+        <img src="./../../assets/images/home/home-logo.png" v-else />
+        <div :class="fromPage === 'home' ? 'active' : ''">首页</div>
       </div>
-      <div class="item">
-        <img src="./../../assets/images/home/quality-logo.png"/>
-        <div>质检</div>
+      <div class="item" @click="jumpPage('quality')">
+        <img src="./../../assets/images/home/quality-selected.png" v-if="fromPage === 'quality'"/>
+        <img src="./../../assets/images/home/quality-logo.png" v-else />
+        <div :class="fromPage === 'quality' ? 'active' : ''">质检</div>
       </div>
-      <div class="item">
-        <img src="./../../assets/images/home/account-logo.png"/>
-        <div>我的</div>
+      <div class="item" @click="jumpPage('account')">
+        <img src="./../../assets/images/home/account-selected.png" v-if="fromPage === 'account'"/>
+        <img src="./../../assets/images/home/account-logo.png" v-else />
+        <div :class="fromPage === 'account' ? 'active' : ''">我的</div>
       </div>
     </div>
   </div>
@@ -23,6 +26,23 @@ export default {
   data () {
     return {
       //
+    }
+  },
+  props: ['fromPage'],
+  methods: {
+    jumpPage (pageName) {
+      if (pageName === 'quality') {
+        this.toGoPage('Check')
+      } else if (pageName === 'home') {
+        this.toGoPage('Home')
+      } else if (pageName === 'account') {
+        this.toGoPage('Center')
+      }
+    },
+    toGoPage (pageName) {
+      this.$router.push({
+        name: pageName
+      })
     }
   }
 }
@@ -48,7 +68,10 @@ export default {
   margin-top: 5px;
 }
 .item>img{
-  height: 18px;
+  height: 19px;
   width: 18px;
+}
+.active {
+  color: #5ac4f3;
 }
 </style>

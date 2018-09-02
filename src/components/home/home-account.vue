@@ -8,7 +8,7 @@
           <img src="./../../assets/images/home/recharge.png"/><span class="title">充值卡(元)</span>
         </div>
         <div class="money">
-          <span>1200</span><span class="decimals">.00</span>
+          <span>{{balance}}</span><span class="decimals">.00</span>
         </div>
       </div>
       <!-- 分割线 -->
@@ -22,16 +22,22 @@
           <div class="item-content-left"></div>
           <div class="item-content">
             <div class="average">
-              <div class="num">10</div>
-              <div>普洗</div>
+              <div class="num" v-text="hasDinnerList ? dinnerList[0].goodsNum : '-'"></div>
+              <div v-if="hasDinnerList">{{dinnerList[0].goodsName}}</div>
             </div>
             <div class="perfect">
-              <div class="num">3</div>
-              <div>精洗</div>
+              <div class="num" v-text="hasDinnerList ? dinnerList[1].goodsNum : '-'"></div>
+              <div v-if="hasDinnerList">{{dinnerList[1].goodsName}}</div>
             </div>
-            <div class="more">
+            <!-- 套餐卡存在的时候显示更多 -->
+            <div class="more" @click="goPage('CardPack')" v-if="hasDinnerList">
               <div class="num"><img class="more" src="./../../assets/images/home/more.png"/></div>
               <div>更多</div>
+            </div>
+            <!-- 不存在的时候显示下面的横杠 -->
+            <div class="perfect" v-else>
+              <div class="num">-</div>
+              <div></div>
             </div>
           </div>
           <div class="item-content-right"></div>
@@ -43,11 +49,36 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'HomeAccount',
   data () {
     return {
       //
+    }
+  },
+  computed: {
+    ...mapGetters({
+      getHomeData: 'getHomeData'
+    }),
+    // 是否有套餐卡
+    hasDinnerList () {
+      return this.getHomeData.dinnerList.length > 0
+    },
+    // 套餐卡数组
+    dinnerList () {
+      return this.getHomeData.dinnerList
+    },
+    // 充值卡余额
+    balance () {
+      return this.getHomeData.balance || 0
+    }
+  },
+  methods: {
+    goPage (pageName) {
+      this.$router.push({
+        name: pageName
+      })
     }
   }
 }
